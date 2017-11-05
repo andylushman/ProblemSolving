@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Practice questions</title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+
+      //FizzBuzz
+      function fizzBuzz(){
+        for (let i = 0; i < 100; i ++){
+          if(i % 3 === 0 && i % 5 === 0){
+            console.log("FizzBuzz");
+          } else if (i % 3 === 0) {
+            console.log("Fizz");
+          } else if (i % 5 === 0) {
+            console.log("Buzz");
+          } else {
+            console.log(i);
+          };
+        };
+      }
+
+      //Write word backwords
+      function reverseWord(str){
+        const word = str.split("").reverse("").join("");
+        console.log(word);
+      }
+
+
+
+      /* 7kyu Regex Validate Pin Code: ATM machines allow 4 or 6 digit PIN codes and PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits. If the function is passed a valid PIN string, return true, else return false. */
+
+      function validatePIN (pin) {
+        if (!isNaN(pin) && pin.length === 4 || pin.length === 6){
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      /* Friend or Foe?: Make a program that filters a list of strings and returns a list with only your friends name in it.
+
+      If a name has 4 letters in it, you can be sure that it has to be a friend of yours!
+
+      Ex: Input = ["Ryan", "Kieran", "Jason", "Yous"], Output = ["Ryan", "Yous"] */
+
+      function friend(friends){
+        var friendsArr = [];
+        for (var i = 0; i < friends.length; i++) {
+          if (friends[i].length === 4) {
+            friendsArr.push(friends[i]);
+          }
+        }
+        return friendsArr;
+      }
+
+      /* 8kyu Complete the bool_to_word (Javascript: boolToWord ) method.
+
+      Given: a boolean value
+
+      Return: a 'Yes' string for true and a 'No' string for false */
+
+      function boolToWord( bool ){
+        if(bool === true){
+          return "Yes";
+        } else if (bool === false) {
+          return "No";
+        }
+      }
+
+      /*Check to see if a string has the same amount of 'x's and 'o's. The method must return a boolean and be case insensitive. The string can contains any char. */
+
+      function XO(str){
+        var count = 0;
+        str = str.toLowerCase();
+        for(let i = 0; i < str.length; i++){
+          if(str[i] === 'x') count++;
+          if(str[i] === 'o') count--;
+        }
+        return count === 0 ? true : false;
+      }
+
+      /*The result may contain fives. ;-)
+      The start number will always be smaller than the end number. Both numbers can be also negative!
+
+      I'm very curious for your solutions and the way you solve it. Maybe someone of you will find an easy pure mathematics solution.
+
+      Have fun coding it and please don't forget to vote and rank this kata! :-)
+
+      I have also created other katas. Take a look if you enjoyed this kata! */
+
+      function dontGiveMeFive(start, end){
+        let newArray = [];
+        for (let i = start; i <= end; i += 1){
+          newArray.push(i);
+        }
+        newArray = newArray.map((val) => {
+          return "" + val;
+        });
+          newArray = newArray.filter((val) => {
+            for (let i = 0; i < val.length; i += 1){
+              if(!val.includes("5")){
+                return val;
+              }
+            }
+          });
+          return newArray.length;
+      };
+
+      //Find the index number of the lowest value of an array of numbers
+
+const firstTest = [4,5,7,1,9,10];
+
+function lowestIndex(arrayToTest) {
+  const lowest= null;
+  const position = -1;
+
+  for (let i = 0; i < arrayToTest.length; i++) {
+    if (lowest === null) {
+      lowest = arrayToTest[i];
+      position = i;
+    } else if (lowest > arrayToTest[i]) {
+      lowest = arrayToTest[i];
+      position = i;
+    }
+  }
+  console.log(position);
+};
+
+// In this Kata, you will be given a string that has lowercase letters and numbers. Your task is to compare the number groupings and return the largest number.
+//
+// For example, solve("gh12cdy695m1") = 695, because this is the largest of all number groupings.
+
+const string = "gh12cdy695m1000vk";
+
+function solve(str) {
+  let largestNumber = null;
+  let numbers = [];
+  let bool = true;
+
+  for (var i = 0; i < str.length; i++) {
+    if(!isNaN(str[i])) {
+      numbers.push(parseInt(str[i]));
+    } else {
+        var fullNumber = parseInt(numbers.join(''));
+        console.log(fullNumber);
+        console.log(largestNumber);
+        if (fullNumber > largestNumber || largestNumber == null) {
+          largestNumber = fullNumber;
+        }
+        num2 = [];
+      }
+  }
+  console.log(largestNumber);
+};
+
+
+
+solve(string);
+
+
+
+    </script>
+
+  </body>
+</html>
