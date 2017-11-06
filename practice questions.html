@@ -8,11 +8,105 @@
 
     <script type="text/javascript">
 //***************************************
+// Create a function that takes a Roman numeral as its argument and returns its value as a numeric decimal integer. You don't need to validate the form of the Roman numeral.
+
+// Modern Roman numerals are written by expressing each decimal digit of the number to be encoded separately, starting with the leftmost digit and skipping any 0s. So 1990 is rendered "MCMXC" (1000 = M, 900 = CM, 90 = XC) and 2008 is rendered "MMVIII" (2000 = MM, 8 = VIII). The Roman numeral for 1666, "MDCLXVI", uses each letter in descending order.
+
+// Example:
+// solution('XXI'); // should return 21
+function romanNumerals(romanNum){
+  const roman = {
+    M: 1000,
+    D: 500,
+    C: 100,
+    L: 50,
+    X: 10,
+    V: 5,
+    I: 1
+  };
+
+  let romanNumeral = 0;
+  let currentRM = null;
+
+  //letters give an array of roman numerals
+  const letters = romanNum.split("");
+  // console.log(letters);
+
+  let numbers = [];
+  //Takes the iterator and creates a letter which in turn makes a number in the roman object
+  for (let i = 0; i < letters.length; i++) {
+    numbers.push(roman[letters[i]]);
+  }
+  console.log(numbers);
+  for (let i = 0; i < numbers.length; i++) {
+    if (currentRM >= numbers[i] || currentRM === null) {
+      currentRM = numbers[i];
+      romanNumeral += numbers[i];
+    } else {
+      currentRM = numbers[i];
+      romanNumeral = numbers[i] - romanNumeral;
+    }
+  }
+  return romanNumeral;
+};
+//***************************************
+// Write a function that takes an integer and returns an array [A, B, C], where A is the number of multiples of 3 (but not 5) less than the given integer, B is the number of multiples of 5 (but not 3) less than the given integer and C is the number of multiples of 3 and 5 less than the given integer.
+// For example, solution(20) should return [5, 2, 1]
+//***************************************
+function solution(num){
+  let returnArray = [];
+  let ACount = 0;
+  let BCount = 0;
+  let CCount = 0;
+
+  for (var i = 1; i < num; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      CCount ++;
+    }
+    if (i % 3 === 0 && !(i % 5 === 0 )) {
+      ACount ++;
+    }
+    if (i % 5 === 0 && !(i % 3 === 0)) {
+      BCount ++;
+    }
+  }
+
+  returnArray.push(ACount, BCount, CCount);
+
+  return (returnArray);
+};
+//***************************************
+// Given two arrays a and b write a function comp(a, b) (compSame(a, b) in Clojure) that checks whether the two arrays have the "same" elements, with the same multiplicities. "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.
+function comp(array1, array2){
+  let array1Squared = [];
+  var found = false;
+  //Square values in first array and save them in array1Squared
+  for (let i = 0; i < array1.length; i++) {
+    array1Squared.push(Math.pow(array1[i],2));
+  }
+  //
+  for (let j = 0; j < array2.length; j++) {
+      if (array1Squared.indexOf(array2[j]) > -1) {
+          found = true;
+          console.log(array2[j]);
+      }
+  }
+};
+//***************************************
+//Complete the solution so that it reverses all of the words within the string passed in.
+// Example:
+// reverseWords("The greatest victory is that which requires no battle")
+// // should return "battle no requires which that is victory greatest The"
+
+function reverseWords(str){
+  const word = str.split(" ").reverse("").join(" ");
+  console.log(word);
+  return word; //words reversed
+};
+//***************************************
 // In this Kata, you will be given a string that has lowercase letters and numbers. Your task is to compare the number groupings and return the largest number.
 //
 // For example, solve("gh12cdy695m1") = 695, because this is the largest of all number groupings.
-
-const string = "gh12cdy695m5000vk";
 
 function solve(str) {
   let largestNumber = null;
@@ -20,24 +114,24 @@ function solve(str) {
 
   for (let i = 0; i < str.length; i++) {
     if (!isNaN(str[i])) {
-      numbers.push(parseInt(str[i]))
-    } else {
-      let fullNumber = numbers.join('');
+      numbers.push(parseInt(str[i]));
+    } else if (numbers.length > 0) {
+        let fullNumber = parseInt(numbers.join(''));
         if (fullNumber > largestNumber || largestNumber === null) {
           largestNumber = fullNumber;
-          numbers = [];
         }
-
+        numbers = [];
+      }
+  }
+  if (numbers.length > 0) {
+    if (parseInt(numbers.join('')) > largestNumber) {
+      largestNumber = parseInt(numbers.join(''));
     }
   }
   console.log(largestNumber);
 };
-
-solve(string);
 //***************************************
     //Find the index number of the lowest value of an array of numbers
-
-const firstTest = [4,5,7,1,9,10];
 
 function lowestIndex(arrayToTest) {
 const lowest= null;
