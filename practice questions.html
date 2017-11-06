@@ -22,7 +22,7 @@ function solve(str) {
     if (!isNaN(str[i])) {
       numbers.push(parseInt(str[i]))
     } else {
-      let fullNumber = numbers.join('')
+      let fullNumber = numbers.join('');
         if (fullNumber > largestNumber || largestNumber === null) {
           largestNumber = fullNumber;
           numbers = [];
