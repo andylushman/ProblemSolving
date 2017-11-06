@@ -12,25 +12,23 @@
 //
 // For example, solve("gh12cdy695m1") = 695, because this is the largest of all number groupings.
 
-const string = "gh12cdy695m1000vk";
+const string = "gh12cdy695m5000vk";
 
 function solve(str) {
   let largestNumber = null;
   let numbers = [];
-  let bool = true;
 
-  for (var i = 0; i < str.length; i++) {
-    if(!isNaN(str[i])) {
-      numbers.push(parseInt(str[i]));
+  for (let i = 0; i < str.length; i++) {
+    if (!isNaN(str[i])) {
+      numbers.push(parseInt(str[i]))
     } else {
-        var fullNumber = parseInt(numbers.join(''));
-        console.log(fullNumber);
-        console.log(largestNumber);
-        if (fullNumber > largestNumber || largestNumber == null) {
+      let fullNumber = numbers.join('')
+        if (fullNumber > largestNumber || largestNumber === null) {
           largestNumber = fullNumber;
+          numbers = [];
         }
-        num2 = [];
-      }
+
+    }
   }
   console.log(largestNumber);
 };
