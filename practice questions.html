@@ -5,25 +5,83 @@
     <title>Practice questions</title>
   </head>
   <body>
-
     <script type="text/javascript">
 //***************************************
-// This is the first part. You can solve the second part here when you are done with this. Multiply two numbers! Simple!
+// Once upon a time, on a way through the old wild west,…
 //
-// The arguments are passed as strings.
-// The numbers may be way very large
-// Answer should be returned as a string
-// The returned "number" should not start with zeros e.g. 0123 is invalid
-// Note: 100 randomly generated tests!
+// … a man was given directions to go from one point to another. The directions were "NORTH", "SOUTH", "WEST", "EAST". Clearly "NORTH" and "SOUTH" are opposite, "WEST" and "EAST" too. Going to one direction and coming back the opposite direction is a needless effort. Since this is the wild west, with dreadfull weather and not much water, it's important to save yourself some energy, otherwise you might die of thirst!
 
-function multiply(a, b) {
-  let total = parseInt(a * b)
-  let totalString = total.toString();
-  
-  console.log(totalString);
-  return totalString;
+function dirReduc (arr) {
+  for (var i = 0; i < arr.length - 1; i++) {
+    if (arr[i] !== arr[i+1] && arr[i].length === arr[i+1].length) {
+      arr.splice(i,2);
+      i = -1;
+    }
+  }
+  return arr;
 };
-multiply("58608473622772837728372827", "7586374672263726736374");
+
+
+//***************************************
+// Given the string representations of two integers, return the string representation of the sum of those integers.
+//
+// For example:
+//
+// sumStrings('1','2') => '3'
+function sumStrings(num1, num2){
+  while (num1.length > 1 && num1[0] === '0')
+    num1 = num1.slice(1);
+
+  while (num2.length > 1 && num2[0] === '0')
+    num2 = num2.slice(1);
+
+  num1 = num1.split('').reverse().join('');
+  num2 = num2.split('').reverse().join('');
+
+  var add = 0
+    , ans = '';
+  for (var i = 0, len = num1.length > num2.length ? num1.length : num2.length; i < len; i++) {
+    var a = i < num1.length ? Number(num1[i]) : 0
+      , b = i < num2.length ? Number(num2[i]) : 0;
+
+    var c = a + b + add;
+    ans += c % 10;
+    add = c >= 10 ? 1 : 0;
+  }
+
+  if (add) ans += add;
+
+  return ans.split('').reverse().join('');
+}
+//***************************************
+// If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+// Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in.
+// Note: If the number is a multiple of both 3 and 5, only count it once.
+
+function solution(num) {
+
+  let returnArray = [];
+  let total = 0;
+
+  for (let i = 1; i < num; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      returnArray.push(i);
+    }
+    if (i % 3 === 0 && !(i % 5 === 0 )) {
+      returnArray.push(i);;
+    }
+    if (i % 5 === 0 && !(i % 3 === 0)) {
+      returnArray.push(i);
+    }
+  }
+
+  for (let i = 0; i < returnArray.length; i++) {
+    total += returnArray[i];
+  }
+
+  console.log(total);
+  return (total);
+};
 //***************************************
 // Create a function that takes a Roman numeral as its argument and returns its value as a numeric decimal integer. You don't need to validate the form of the Roman numeral.
 
