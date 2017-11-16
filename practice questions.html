@@ -23,7 +23,7 @@ function humanReadabl(seconds){
   let time //HH:MM:SS
 
 
-  for (let i = 0; i < seconds; i++) {
+  for (let i = 0; i <= seconds; i++) {
     secCount ++;
     if (secCount === 60) {
       secCount = 0;
@@ -36,7 +36,7 @@ function humanReadabl(seconds){
   }
 
   console.log(time);
-  console.log(secCount);
+  console.log(hourCount + ":" + minCount + ":" + secCount);
 };
 humanReadabl(4051);
 //***************************************
